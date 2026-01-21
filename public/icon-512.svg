@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="trackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a5b4fc"/>
+      <stop offset="100%" style="stop-color:#818cf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+
+  <!-- Track oval -->
+  <ellipse cx="256" cy="270" rx="155" ry="100" fill="none" stroke="url(#trackGrad)" stroke-width="20" opacity="0.3"/>
+
+  <!-- Runner silhouette -->
+  <g transform="translate(256, 255)">
+    <!-- Head -->
+    <circle cx="0" cy="-95" r="38" fill="white"/>
+
+    <!-- Body -->
+    <path d="M0,-55 L-12,25" stroke="white" stroke-width="22" stroke-linecap="round"/>
+
+    <!-- Front arm (pumping forward) -->
+    <path d="M-8,-40 L40,-70" stroke="white" stroke-width="18" stroke-linecap="round"/>
+
+    <!-- Back arm -->
+    <path d="M-8,-40 L-55,-15" stroke="white" stroke-width="18" stroke-linecap="round"/>
+
+    <!-- Front leg (extended) -->
+    <path d="M-12,25 L55,95" stroke="white" stroke-width="22" stroke-linecap="round"/>
+
+    <!-- Back leg (bent) -->
+    <path d="M-12,25 L-65,55 L-40,110" stroke="white" stroke-width="22" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Speed lines -->
+  <g opacity="0.6">
+    <line x1="65" y1="210" x2="120" y2="210" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <line x1="50" y1="250" x2="130" y2="250" stroke="white" stroke-width="10" stroke-linecap="round"/>
+    <line x1="65" y1="290" x2="120" y2="290" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Timer/stopwatch hint at bottom -->
+  <g transform="translate(256, 430)">
+    <circle cx="0" cy="0" r="42" fill="rgba(255,255,255,0.2)"/>
+    <text x="0" y="12" font-family="system-ui, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">⏱</text>
+  </g>
+</svg>
