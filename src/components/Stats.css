@@ -1,0 +1,220 @@
+.stats-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.stats-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.stats-title:first-of-type {
+  margin-top: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.stat-card {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.stat-card.primary {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.stat-card.highlight {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.stat-card.fastest {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.15) 0%, rgba(234, 179, 8, 0.15) 100%);
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+/* Consistency rating colors */
+.stat-card.consistency.elite {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.stat-card.consistency.great {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(20, 184, 166, 0.15) 100%);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.stat-card.consistency.good {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.stat-card.consistency.fair {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(234, 179, 8, 0.15) 100%);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.stat-card.consistency.variable {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Split type colors */
+.stat-card.split.negative {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.stat-card.split.positive {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.stat-card.split.even {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.stat-card.primary .stat-value {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.25rem;
+}
+
+.stat-badge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+  color: #e2e8f0;
+}
+
+.stat-hint {
+  font-size: 0.625rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* Split comparison */
+.split-comparison {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.split-half {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.split-pace {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.split-label {
+  font-size: 0.625rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.split-arrow {
+  color: #64748b;
+  font-size: 1.25rem;
+}
+
+/* Projected times */
+.projections-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.projection-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 8px;
+}
+
+.projection-distance {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.projection-time {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+@media (max-width: 480px) {
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-card.primary .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-card {
+    padding: 0.75rem;
+  }
+
+  .split-pace {
+    font-size: 1rem;
+  }
+}

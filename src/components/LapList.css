@@ -1,0 +1,147 @@
+.lap-list {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.lap-list-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.lap-list-header {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.lap-list-items {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+
+.lap-list-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lap-list-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lap-list-items::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+.lap-item {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+  transition: background 0.2s ease;
+}
+
+.lap-item:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.lap-item.fastest {
+  background: rgba(34, 197, 94, 0.1);
+  border-left: 3px solid #22c55e;
+}
+
+.lap-item.slowest {
+  background: rgba(239, 68, 68, 0.05);
+  border-left: 3px solid rgba(239, 68, 68, 0.5);
+}
+
+.lap-number {
+  font-weight: 600;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lap-badge {
+  font-size: 0.875rem;
+}
+
+.lap-time {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+.lap-pace {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.lap-speed {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.lap-comparison {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.lap-comparison.faster {
+  color: #22c55e;
+}
+
+.lap-comparison.slower {
+  color: #ef4444;
+}
+
+.lap-comparison.average {
+  color: #64748b;
+}
+
+.lap-list-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #64748b;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-hint {
+  font-size: 0.875rem;
+  color: #475569;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .lap-list-header,
+  .lap-item {
+    grid-template-columns: 0.8fr 1.2fr 1fr 1fr;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .lap-pace,
+  .lap-speed {
+    font-size: 0.75rem;
+  }
+}

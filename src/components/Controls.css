@@ -1,0 +1,129 @@
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.controls-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-height: 60px;
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.btn-icon {
+  font-size: 1.25rem;
+}
+
+.control-btn.large {
+  padding: 1.5rem 3rem;
+  font-size: 1.25rem;
+  min-width: 200px;
+}
+
+.start-btn,
+.resume-btn {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+}
+
+.start-btn:hover,
+.resume-btn:hover {
+  box-shadow: 0 6px 30px rgba(34, 197, 94, 0.5);
+  transform: translateY(-2px);
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+}
+
+.pause-btn:hover {
+  box-shadow: 0 6px 30px rgba(245, 158, 11, 0.5);
+}
+
+.lap-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.lap-btn:hover {
+  box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(100, 116, 139, 0.3);
+}
+
+.reset-btn:hover {
+  box-shadow: 0 6px 30px rgba(100, 116, 139, 0.4);
+}
+
+.undo-btn {
+  background: transparent;
+  border: 2px solid rgba(100, 116, 139, 0.4);
+  color: #94a3b8;
+  padding: 0.5rem 1rem;
+  min-height: auto;
+  font-size: 0.875rem;
+  flex: none;
+}
+
+.undo-btn:hover {
+  background: rgba(100, 116, 139, 0.1);
+  border-color: #64748b;
+  color: #e2e8f0;
+}
+
+.finish-btn {
+  background: transparent;
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+  padding: 0.75rem 1.5rem;
+  min-height: auto;
+  margin-top: 0.5rem;
+}
+
+.finish-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+
+@media (max-width: 480px) {
+  .control-btn {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .control-btn.large {
+    padding: 1.25rem 2rem;
+    font-size: 1.125rem;
+  }
+}
