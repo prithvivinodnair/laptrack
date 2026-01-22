@@ -103,17 +103,20 @@
 }
 
 .finish-btn {
-  background: transparent;
-  border: 2px solid rgba(239, 68, 68, 0.5);
-  color: #ef4444;
-  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  color: white;
+  padding: 0.875rem 1.5rem;
   min-height: auto;
   margin-top: 0.5rem;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+  flex: none;
+  width: 100%;
+  max-width: 400px;
 }
 
 .finish-btn:hover {
-  background: rgba(239, 68, 68, 0.1);
-  border-color: #ef4444;
+  box-shadow: 0 6px 30px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 480px) {

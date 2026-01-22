@@ -4,11 +4,15 @@ import { Controls } from './components/Controls';
 import { LapList } from './components/LapList';
 import { Stats } from './components/Stats';
 import { DistanceSetup } from './components/DistanceSetup';
+import { ProfileSetup } from './components/ProfileSetup';
+import { RaceSummary } from './components/RaceSummary';
 import { useTimer } from './hooks/useTimer';
 import { calculateStats } from './utils';
+import type { UserProfile, RunStats } from './types';
 import './App.css';
 
 const DISTANCE_STORAGE_KEY = 'laptrack_distance';
+const PROFILE_STORAGE_KEY = 'laptrack_profile';
 
 function App() {
   const [lapDistance, setLapDistance] = useState(() => {
@@ -16,12 +20,26 @@ function App() {
     return saved ? parseInt(saved, 10) : 200;
   });
 
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(() => {
+    const saved = localStorage.getItem(PROFILE_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  const [raceFinished, setRaceFinished] = useState(false);
+  const [finalStats, setFinalStats] = useState<RunStats | null>(null);
+
   const { session, start, pause, lap, undoLap, reset } = useTimer(lapDistance);
-  const stats = calculateStats(session.laps);
+  const stats = calculateStats(session.laps, userProfile?.weight);
 
   useEffect(() => {
     localStorage.setItem(DISTANCE_STORAGE_KEY, lapDistance.toString());
   }, [lapDistance]);
+
+  useEffect(() => {
+    if (userProfile) {
+      localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(userProfile));
+    }
+  }, [userProfile]);
 
   // Prevent screen from sleeping while running
   useEffect(() => {
@@ -48,7 +66,31 @@ function App() {
     };
   }, [session.isRunning]);
 
+  const handleFinishRace = () => {
+    setFinalStats(stats);
+    setRaceFinished(true);
+  };
+
+  const handleNewRace = () => {
+    reset();
+    setRaceFinished(false);
+    setFinalStats(null);
+  };
+
   const hasStarted = session.startTime !== null || session.elapsedTime > 0;
+
+  // Show race summary if race is finished
+  if (raceFinished && finalStats) {
+    return (
+      <div className="app">
+        <RaceSummary
+          name={userProfile?.name || 'Runner'}
+          stats={finalStats}
+          onNewRace={handleNewRace}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="app">
@@ -57,7 +99,11 @@ function App() {
           <span className="title-icon">🏃</span>
           LapTrack
         </h1>
-        <p className="app-subtitle">Indoor Run Tracker</p>
+        {userProfile?.name ? (
+          <p className="app-subtitle">Let's run, {userProfile.name}!</p>
+        ) : (
+          <p className="app-subtitle">Indoor Run Tracker</p>
+        )}
       </header>
 
       <main className="app-main">
@@ -65,6 +111,11 @@ function App() {
           lapDistance={lapDistance}
           onDistanceChange={setLapDistance}
           disabled={hasStarted}
+        />
+
+        <ProfileSetup
+          profile={userProfile}
+          onProfileChange={setUserProfile}
         />
 
         <Timer
@@ -82,6 +133,7 @@ function App() {
           onLap={lap}
           onUndoLap={undoLap}
           onReset={reset}
+          onFinish={handleFinishRace}
         />
 
         {session.laps.length > 0 && (

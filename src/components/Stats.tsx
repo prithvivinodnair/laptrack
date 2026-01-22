@@ -53,6 +53,12 @@ export function Stats({ stats }: StatsProps) {
             <span className="stat-label">Fastest Lap #{stats.fastestLap.lapNumber}</span>
           </div>
         )}
+        {stats.caloriesBurned !== null && (
+          <div className="stat-card calories">
+            <span className="stat-value">{Math.round(stats.caloriesBurned)}</span>
+            <span className="stat-label">Calories Burned</span>
+          </div>
+        )}
       </div>
 
       {/* Advanced Stats - only show if we have enough data */}

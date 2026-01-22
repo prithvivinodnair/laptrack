@@ -65,6 +65,42 @@ export function calculateSpeed(timeMs: number, distanceMeters: number): number {
   return distanceKm / timeHours;
 }
 
+// Calculate MET (Metabolic Equivalent of Task) based on running speed
+// MET values from the Compendium of Physical Activities
+function getMETForSpeed(speedKmh: number): number {
+  if (speedKmh < 6.4) return 6.0;      // < 4 mph (walking/slow jog)
+  if (speedKmh < 8.0) return 8.3;      // 4-5 mph
+  if (speedKmh < 9.6) return 9.8;      // 5-6 mph
+  if (speedKmh < 11.2) return 11.0;    // 6-7 mph
+  if (speedKmh < 12.8) return 11.8;    // 7-8 mph
+  if (speedKmh < 14.4) return 12.8;    // 8-9 mph
+  if (speedKmh < 16.0) return 14.5;    // 9-10 mph
+  return 16.0;                          // > 10 mph
+}
+
+// Calculate calories burned using MET formula
+// Calories = MET × weight (kg) × time (hours)
+export function calculateCaloriesBurned(
+  timeMs: number,
+  distanceMeters: number,
+  weightKg: number
+): number {
+  if (timeMs === 0 || distanceMeters === 0 || weightKg === 0) return 0;
+
+  const timeHours = timeMs / (1000 * 60 * 60);
+  const speedKmh = calculateSpeed(timeMs, distanceMeters);
+  const met = getMETForSpeed(speedKmh);
+
+  return met * weightKg * timeHours;
+}
+
+// Convert weight between units
+export function convertWeight(value: number, from: 'kg' | 'lbs', to: 'kg' | 'lbs'): number {
+  if (from === to) return value;
+  if (from === 'lbs' && to === 'kg') return value * 0.453592;
+  return value * 2.20462; // kg to lbs
+}
+
 // Calculate coefficient of variation for pace consistency
 function calculatePaceConsistency(laps: Lap[]): number {
   if (laps.length < 2) return 0;
@@ -139,7 +175,7 @@ function calculateProjectedTimes(averagePace: number, totalDistance: number): Pr
     }));
 }
 
-export function calculateStats(laps: Lap[]): RunStats {
+export function calculateStats(laps: Lap[], weightKg?: number): RunStats {
   if (laps.length === 0) {
     return {
       totalDistance: 0,
@@ -154,6 +190,7 @@ export function calculateStats(laps: Lap[]): RunStats {
       splitAnalysis: null,
       projectedTimes: [],
       averageLapTime: 0,
+      caloriesBurned: null,
     };
   }
 
@@ -183,6 +220,7 @@ export function calculateStats(laps: Lap[]): RunStats {
     splitAnalysis: calculateSplitAnalysis(laps),
     projectedTimes: calculateProjectedTimes(averagePace, totalDistance),
     averageLapTime,
+    caloriesBurned: weightKg ? calculateCaloriesBurned(totalTime, totalDistance, weightKg) : null,
   };
 }
 

@@ -9,6 +9,7 @@ interface ControlsProps {
   onLap: () => void;
   onUndoLap: () => void;
   onReset: () => void;
+  onFinish: () => void;
 }
 
 export function Controls({
@@ -20,6 +21,7 @@ export function Controls({
   onLap,
   onUndoLap,
   onReset,
+  onFinish,
 }: ControlsProps) {
   return (
     <div className="controls-container">
@@ -63,9 +65,10 @@ export function Controls({
           )}
         </>
       )}
-      {hasStarted && isRunning && hasLaps && (
-        <button className="control-btn finish-btn" onClick={onPause}>
-          <span>Finish Run</span>
+      {hasStarted && hasLaps && !isRunning && (
+        <button className="control-btn finish-btn" onClick={onFinish}>
+          <span className="btn-icon">🏁</span>
+          <span>Finish Race</span>
         </button>
       )}
     </div>

@@ -6,6 +6,12 @@ export interface Lap {
   speed: number; // km/h
 }
 
+export interface UserProfile {
+  name: string;
+  weight: number; // stored in kg internally
+  weightUnit: 'kg' | 'lbs';
+}
+
 export interface RunSession {
   laps: Lap[];
   lapDistance: number; // distance of one lap in meters
@@ -43,4 +49,5 @@ export interface RunStats {
   splitAnalysis: SplitAnalysis | null; // null if less than 2 laps
   projectedTimes: ProjectedTime[];
   averageLapTime: number; // in milliseconds
+  caloriesBurned: number | null; // null if weight not set
 }
