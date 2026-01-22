@@ -1,10 +1,11 @@
-import type { RunStats } from '../types';
-import { formatTime, formatPace, formatSpeed, formatDistance } from '../utils';
+import type { RunStats, Lap } from '../types';
+import { formatTime, formatPace, formatSpeed, formatDistance, getLapComparison } from '../utils';
 import './RaceSummary.css';
 
 interface RaceSummaryProps {
   name: string;
   stats: RunStats;
+  laps: Lap[];
   onNewRace: () => void;
 }
 
@@ -24,7 +25,7 @@ function getPerformanceMessage(stats: RunStats): string {
   return "Great effort! Every lap counts.";
 }
 
-export function RaceSummary({ name, stats, onNewRace }: RaceSummaryProps) {
+export function RaceSummary({ name, stats, laps, onNewRace }: RaceSummaryProps) {
   const performanceMessage = getPerformanceMessage(stats);
 
   return (
@@ -98,6 +99,40 @@ export function RaceSummary({ name, stats, onNewRace }: RaceSummaryProps) {
           </div>
         )}
       </div>
+
+      {/* Lap Times */}
+      {laps.length > 0 && (
+        <div className="laps-section">
+          <h3 className="laps-title">Lap Times</h3>
+          <div className="laps-list">
+            {[...laps].reverse().map((lap) => {
+              const comparison = getLapComparison(lap.time, stats.averageLapTime);
+              const isFastest = stats.fastestLap?.lapNumber === lap.lapNumber;
+              const isSlowest = stats.slowestLap?.lapNumber === lap.lapNumber;
+
+              return (
+                <div
+                  key={lap.lapNumber}
+                  className={`lap-row ${isFastest ? 'fastest' : ''} ${isSlowest ? 'slowest' : ''}`}
+                >
+                  <div className="lap-number">
+                    {isFastest && <span className="lap-badge">⚡</span>}
+                    {isSlowest && <span className="lap-badge">🐢</span>}
+                    Lap {lap.lapNumber}
+                  </div>
+                  <div className="lap-details">
+                    <span className="lap-time">{formatTime(lap.time)}</span>
+                    <span className="lap-pace">{formatPace(lap.pace)} /km</span>
+                  </div>
+                  <span className={`lap-comparison ${comparison <= 0 ? 'faster' : 'slower'}`}>
+                    {comparison > 0 ? '+' : ''}{comparison.toFixed(1)}%
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <button className="new-race-btn" onClick={onNewRace}>
         <span className="btn-icon">🏃</span>

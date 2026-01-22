@@ -186,6 +186,98 @@
   margin-top: 0.25rem;
 }
 
+/* Lap Times Section */
+.laps-section {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.laps-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.laps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lap-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 10px;
+}
+
+.lap-row.fastest {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.15) 0%, rgba(234, 179, 8, 0.15) 100%);
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+.lap-row.slowest {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.lap-number {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 70px;
+}
+
+.lap-badge {
+  font-size: 0.875rem;
+}
+
+.lap-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.lap-time {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.lap-pace {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.lap-comparison {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  min-width: 55px;
+  text-align: right;
+}
+
+.lap-comparison.faster {
+  color: #22c55e;
+}
+
+.lap-comparison.slower {
+  color: #f87171;
+}
+
 .new-race-btn {
   display: flex;
   align-items: center;

@@ -8,7 +8,7 @@ import { ProfileSetup } from './components/ProfileSetup';
 import { RaceSummary } from './components/RaceSummary';
 import { useTimer } from './hooks/useTimer';
 import { calculateStats } from './utils';
-import type { UserProfile, RunStats } from './types';
+import type { UserProfile, RunStats, Lap } from './types';
 import './App.css';
 
 const DISTANCE_STORAGE_KEY = 'laptrack_distance';
@@ -27,6 +27,7 @@ function App() {
 
   const [raceFinished, setRaceFinished] = useState(false);
   const [finalStats, setFinalStats] = useState<RunStats | null>(null);
+  const [finalLaps, setFinalLaps] = useState<Lap[]>([]);
 
   const { session, start, pause, lap, undoLap, reset } = useTimer(lapDistance);
   const stats = calculateStats(session.laps, userProfile?.weight);
@@ -68,6 +69,7 @@ function App() {
 
   const handleFinishRace = () => {
     setFinalStats(stats);
+    setFinalLaps([...session.laps]);
     setRaceFinished(true);
   };
 
@@ -75,6 +77,7 @@ function App() {
     reset();
     setRaceFinished(false);
     setFinalStats(null);
+    setFinalLaps([]);
   };
 
   const hasStarted = session.startTime !== null || session.elapsedTime > 0;
@@ -86,6 +89,7 @@ function App() {
         <RaceSummary
           name={userProfile?.name || 'Runner'}
           stats={finalStats}
+          laps={finalLaps}
           onNewRace={handleNewRace}
         />
       </div>
